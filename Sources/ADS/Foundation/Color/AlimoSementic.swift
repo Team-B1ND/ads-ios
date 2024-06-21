@@ -82,6 +82,7 @@ extension AlimoColor.Color: SementicColor {
         case .primary60: P.Primary60
         case .neutral90: P.Neutral90
         case .neutral00: P.Neutral00
+        case .transparent: P.Transparent
         }
     }
     
@@ -91,6 +92,7 @@ extension AlimoColor.Color: SementicColor {
         case .primary60: P.Primary60
         case .neutral90: P.Neutral90
         case .neutral00: P.Neutral00
+        case .transparent: P.Transparent
         }
     }
 }

@@ -27,6 +27,7 @@ public extension AlimoColor {
         case primary60
         case neutral90
         case neutral00
+        case transparent
     }
     enum Warning {
         case normal

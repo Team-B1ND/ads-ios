@@ -2,7 +2,7 @@ import SwiftUI
 
 public extension Font {
     static func pretendard(_ weight: Pretendard.Weight, size: CGFloat) -> Font {
-        Font.custom("PretendardSans-\(weight.rawValue)", size: size)
+        Font.custom("Pretendard-\(weight.rawValue)", size: size)
     }
 }
 

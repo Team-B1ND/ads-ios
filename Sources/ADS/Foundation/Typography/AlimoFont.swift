@@ -30,3 +30,16 @@ public enum AlimoFont: CaseIterable {
     case captionM
     case captionR
 }
+
+#Preview {
+    VStack {
+        ForEach(AlimoFont.allCases, id: \.self) {
+            Text("Hello Alimo")
+                .alimoFont($0)
+        }
+        Image(icon: .AddEmoji)
+            .alimoIconColor(AlimoColor.Label.alt)
+    }
+    .registerPretendard()
+    .environmentObject(ColorProvider(isDarkTheme: false))
+}

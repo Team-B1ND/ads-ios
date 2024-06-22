@@ -1,11 +1,23 @@
 import SwiftUI
 
-public struct RoundedCornerShape: Shape {
+public struct RoundedCornerShape : Shape {
+    
+    public enum RectCorner : Sendable {
+        case topLeft
+        case topRight
+        case bottomLeft
+        case bottomRight
+        case allCorners
+    }
     
     private let radius: CGFloat
-    private let corners: UIRectCorner
+    private let corners: [RectCorner]
     
-    public init(radius: CGFloat = .zero, corners: UIRectCorner = .allCorners) {
+    public init(radius: CGFloat = .zero, corners: RectCorner = .allCorners) {
+        self.init(radius: radius, corners: [corners])
+    }
+    
+    public init(radius: CGFloat = .zero, corners: [RectCorner]) {
         self.radius = radius
         self.corners = corners
     }

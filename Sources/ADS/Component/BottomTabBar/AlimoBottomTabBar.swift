@@ -25,7 +25,10 @@ public struct AlimoBottomTabBar<C>: View where C: View {
                 .ignoresSafeArea()
         }
     }
+    
+    #if os(iOS)
     @Environment(\.safeAreaInsets) private var safeAreaInsets
+    #endif
     
     @ViewBuilder
     private var bottomBarBar: some View {
@@ -43,15 +46,19 @@ public struct AlimoBottomTabBar<C>: View where C: View {
             }
             Spacer()
         }
+        #if os(iOS)
         .padding(.bottom, safeAreaInsets.bottom)
+        #endif
         .padding(.vertical, 8)
         .padding(.horizontal, 8)
         .alimoBackground(AlimoColor.Background.normal)
         .cornerRadius(16, corners: [.topLeft, .topRight])
         .stroke(16, corners: [.topLeft, .topRight], content: colorProvider.color(AlimoColor.Label.back))
         .onChange(of: selectedTab) { _ in
+            #if os(iOS)
             let impactMed = UIImpactFeedbackGenerator(style: .rigid)
             impactMed.impactOccurred()
+            #endif
         }
     }
 }

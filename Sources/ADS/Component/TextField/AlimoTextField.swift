@@ -100,7 +100,9 @@ struct AlimoTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         let radius: CGFloat = isRounded ? 26 : 12
         return configuration
+        #if os(iOS)
             .textInputAutocapitalization(.never)
+        #endif
             .autocorrectionDisabled()
             .textContentType(.init(rawValue: ""))
             .focused($isFocused)

@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(macOS 13.0, *)
 public struct AlimoTopAppBar<C>: View where C: View {
     
     @Environment(\.dismiss) private var dismiss
@@ -60,6 +61,7 @@ public struct AlimoTopAppBar<C>: View where C: View {
     }
 }
 
+@available(macOS 13.0, *)
 public extension View {
     func alimoTopAppBar<TC>(
         _ title: String,
@@ -78,6 +80,7 @@ public extension View {
     }
 }
 
+@available(macOS 13.0, *)
 #Preview {
     Text("Hello Alimo")
         .alimoColor(AlimoColor.Label.normal)
@@ -85,6 +88,7 @@ public extension View {
         .preview(background: AlimoColor.Background.alt)
 }
 
+@available(macOS 13.0, *)
 #Preview {
     Text("Hello Alimo")
         .alimoColor(AlimoColor.Label.normal)
@@ -92,6 +96,7 @@ public extension View {
         .preview(background: AlimoColor.Background.alt)
 }
 
+@available(macOS 13.0, *)
 #Preview("AlimoTopAppBarDark") {
     Text("Hello Alimo")
         .alimoColor(AlimoColor.Label.normal)
@@ -99,6 +104,7 @@ public extension View {
         .preview(isDarkTheme: true, background: AlimoColor.Background.alt)
 }
 
+@available(macOS 13.0, *)
 #Preview("AlimoTopAppBarDark") {
     Text("Hello Alimo")
         .alimoColor(AlimoColor.Label.normal)

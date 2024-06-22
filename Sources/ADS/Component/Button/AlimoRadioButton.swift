@@ -30,8 +30,10 @@ public struct AlimoRadioButton: View {
         
         Button {
             action()
+            #if os(iOS)
             let impactMed = UIImpactFeedbackGenerator(style: .rigid)
             impactMed.impactOccurred()
+            #endif
         } label: {
             HStack(spacing: 6) {
                 Image(icon: isSelected ? selectedIcon : unselectedIcon)

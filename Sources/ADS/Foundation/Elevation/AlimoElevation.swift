@@ -33,7 +33,9 @@ public enum AlimoElevation {
         }
     }
     
+    #if os(iOS)
     var uiColor: UIColor {
         UIColor(color)
     }
+    #endif
 }

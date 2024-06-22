@@ -1,7 +1,9 @@
+#if os(iOS)
 import SwiftUI
 import UIKit
 
 // MARK: - SwiftUI
+@available(iOS 13.0, *)
 public extension View {
     func alimoElevation(_ ev: AlimoElevation) -> some View {
         self
@@ -16,3 +18,4 @@ public extension UIView {
 //            .shadow(color: ev.uiColor, radius: ev.radius, opacity: ev.uiColor.alpha)
     }
 }
+#endif

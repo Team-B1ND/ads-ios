@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 public struct Pretendard {
     
@@ -14,6 +13,7 @@ public struct Pretendard {
         case SemiBold
         case Thin
         
+        #if os(iOS)
         var weight: UIFont.Weight {
             switch self {
             case .Black: .black
@@ -27,6 +27,7 @@ public struct Pretendard {
             case .Thin: .thin
             }
         }
+        #endif
     }
     
     public static func register() {

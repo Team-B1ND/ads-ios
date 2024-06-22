@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(macOS 13.0, *)
 public struct AlimoLogoTopAppBar<C>: View where C: View {
     
     @Environment(\.dismiss) private var dismiss
@@ -40,6 +41,7 @@ public struct AlimoLogoTopAppBar<C>: View where C: View {
     }
 }
 
+@available(macOS 13.0, *)
 public extension View {
     func alimoLogoTopAppBar<TC>(
         background: SementicColor = AlimoColor.Background.alt,
@@ -53,6 +55,7 @@ public extension View {
     }
 }
 
+@available(macOS 13.0, *)
 #Preview {
     Text("Hello Alimo")
         .alimoColor(AlimoColor.Label.normal)
@@ -60,6 +63,7 @@ public extension View {
         .preview(background: AlimoColor.Background.alt)
 }
 
+@available(macOS 13.0, *)
 #Preview("AlimoLogoTopAppBarDark") {
     Text("Hello Alimo")
         .alimoColor(AlimoColor.Label.normal)

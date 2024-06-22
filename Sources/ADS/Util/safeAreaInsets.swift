@@ -1,4 +1,6 @@
+#if os(iOS)
 import SwiftUI
+import UIKit
 
 public struct SafeAreaInsetsKey: EnvironmentKey {
     public static var defaultValue: EdgeInsets {
@@ -17,3 +19,5 @@ private extension UIEdgeInsets {
         EdgeInsets(top: top, leading: left, bottom: bottom, trailing: right)
     }
 }
+
+#endif

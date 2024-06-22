@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 public enum AlimoFont: CaseIterable {
     case title1B

@@ -1,5 +1,6 @@
 import SwiftUI
 
+#if os(iOS)
 public extension View {
     func textEditorBackground(_ content: Color) -> some View {
         if #available(iOS 16.0, *) {
@@ -10,3 +11,4 @@ public extension View {
         }
     }
 }
+#endif

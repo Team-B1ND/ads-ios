@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 public extension View {
     func toLeading() -> some View {
@@ -45,7 +44,6 @@ public extension View {
 
 public extension View {
     func frame(size: CGFloat) -> some View {
-        self
-            .frame(width: size, height: size)
+        self.frame(width: size, height: size)
     }
 }

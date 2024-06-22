@@ -39,10 +39,12 @@ public struct AlimoTextEditor: View {
         let radius: CGFloat = isRounded ? 26 : 12
         TextEditor(text: $text)
             .disabled(!isEnabled)
+        #if os(iOS)
             .textInputAutocapitalization(.never)
+            .textEditorBackground(.clear)
+        #endif
             .autocorrectionDisabled()
             .textContentType(.init(rawValue: ""))
-            .textEditorBackground(.clear)
             .focused($isFocused)
             .alimoFont(.bodyM)
             .cornerRadius(radius, corners: .allCorners)

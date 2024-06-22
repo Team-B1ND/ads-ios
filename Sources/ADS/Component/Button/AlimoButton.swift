@@ -34,7 +34,7 @@ public struct AlimoButton: View {
     }
     
     public var body: some View {
-        let labelColor: SementicColor = isEnabled ? AlimoColor.Color.neutral90 : AlimoColor.Background.sub
+        let labelColor: SementicColor = isEnabled ? AlimoColor.Color.neutral90 : AlimoColor.Label.alt
         Button {
             guard isEnabled, !isLoading else { return }
             isLoading = true
@@ -112,8 +112,15 @@ struct AlimoButtonStyle: ButtonStyle {
 #Preview {
     VStack {
         AlimoButton("시작하기", type: .CTA) {}
-        Text("Hello")
+        AlimoButton("시작하기", type: .CTA, isEnabled: false) {}
     }
-    .registerPretendard()
-    .environmentObject(ColorProvider(isDarkTheme: false))
+    .preview()
+}
+
+#Preview("AlimoButtonDark") {
+    VStack {
+        AlimoButton("시작하기", type: .CTA) {}
+        AlimoButton("시작하기", type: .CTA, isEnabled: false) {}
+    }
+    .preview(isDarkTheme: true)
 }

@@ -19,7 +19,7 @@ public struct AlimoCategory: View {
         case .enabled:
             AlimoColor.Color.neutral90
         case .disabled:
-            AlimoColor.Label.alt
+            AlimoColor.Label.em
         case .selected:
             AlimoColor.Label.normal
         }
@@ -39,13 +39,13 @@ public struct AlimoCategory: View {
     public var body: some View {
         Text(text)
             .padding(.horizontal, 16)
-            .padding(.vertical, 6)
-            .alimoFont(.captionM)
+            .frame(height: 30)
+            .alimoFont(.labelM)
             .alimoBackground(backgroundColor)
             .alimoColor(textColor)
-            .cornerRadius(12, corners: .allCorners)
+            .cornerRadius(15, corners: .allCorners)
             .if(type == .selected) { view in
-                view.stroke(12, content: colorProvider.color(AlimoColor.Color.primary60), lineWidth: 1.5)
+                view.stroke(15, content: colorProvider.color(AlimoColor.Color.primary60), lineWidth: 1.5)
             }
     }
 }
@@ -59,6 +59,17 @@ public struct AlimoCategory: View {
                 }
         }
     }
-    .registerPretendard()
-    .environmentObject(ColorProvider(isDarkTheme: false))
+    .preview()
+}
+
+#Preview("AlimoCategoryDark") {
+    VStack {
+        ForEach(CategoryType.allCases, id: \.self) {
+            AlimoCategory("B1ND", type: $0)
+                .button {
+                    
+                }
+        }
+    }
+    .preview(isDarkTheme: true)
 }

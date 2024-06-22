@@ -48,10 +48,36 @@ public struct AlimoBottomTabBar<C>: View where C: View {
         .padding(.horizontal, 8)
         .alimoBackground(AlimoColor.Background.normal)
         .cornerRadius(16, corners: [.topLeft, .topRight])
-        .stroke(16, corners: [.topLeft, .topRight], content: colorProvider.color(AlimoColor.Background.normal))
+        .stroke(16, corners: [.topLeft, .topRight], content: colorProvider.color(AlimoColor.Label.back))
         .onChange(of: selectedTab) { _ in
             let impactMed = UIImpactFeedbackGenerator(style: .rigid)
             impactMed.impactOccurred()
         }
     }
 }
+
+#Preview {
+    
+    @State var selectedTab = BottomTabType.Home
+    
+    return AlimoBottomTabBar(selectedTab: selectedTab) {
+        selectedTab = $0
+    } content: {
+        Text("content")
+    }
+    .environmentObject(ColorProvider(isDarkTheme: false))
+}
+
+
+#Preview("AlimoBottomTabBarDark") {
+    
+    @State var selectedTab = BottomTabType.Home
+    
+    return AlimoBottomTabBar(selectedTab: selectedTab) {
+        selectedTab = $0
+    } content: {
+        Text("content")
+    }
+    .environmentObject(ColorProvider(isDarkTheme: true))
+}
+

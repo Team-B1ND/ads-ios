@@ -6,6 +6,7 @@ public extension AlimoColor {
     enum Label {
         case normal
         case sub
+        case em
         case alt
         case back
         case inverse

@@ -61,7 +61,7 @@ public struct AlimoTopAppBar<C>: View where C: View {
 }
 
 public extension View {
-    func alimoTopBar<TC>(
+    func alimoTopAppBar<TC>(
         _ title: String,
         background: SementicColor = AlimoColor.Background.alt,
         @ViewBuilder trailingContent: @escaping () -> TC = { EmptyView() },
@@ -77,3 +77,32 @@ public extension View {
         }
     }
 }
+
+#Preview {
+    Text("Hello Alimo")
+        .alimoColor(AlimoColor.Label.normal)
+        .alimoTopAppBar("프로필")
+        .preview(background: AlimoColor.Background.alt)
+}
+
+#Preview {
+    Text("Hello Alimo")
+        .alimoColor(AlimoColor.Label.normal)
+        .alimoTopAppBar("프로필", backButtonAction:  {})
+        .preview(background: AlimoColor.Background.alt)
+}
+
+#Preview("AlimoTopAppBarDark") {
+    Text("Hello Alimo")
+        .alimoColor(AlimoColor.Label.normal)
+        .alimoTopAppBar("프로필")
+        .preview(isDarkTheme: true, background: AlimoColor.Background.alt)
+}
+
+#Preview("AlimoTopAppBarDark") {
+    Text("Hello Alimo")
+        .alimoColor(AlimoColor.Label.normal)
+        .alimoTopAppBar("프로필", backButtonAction:  {})
+        .preview(isDarkTheme: true, background: AlimoColor.Background.alt)
+}
+

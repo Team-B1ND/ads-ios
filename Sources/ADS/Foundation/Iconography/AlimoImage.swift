@@ -7,6 +7,7 @@ public enum AlimoImage {
     case StudentDisabled
     case Teacher
     case TeacherDisabled
+    case MiniLogo
     
     var image: String {
         switch self {
@@ -16,6 +17,7 @@ public enum AlimoImage {
         case .StudentDisabled: "StudentDisabled"
         case .Teacher: "Teacher"
         case .TeacherDisabled: "TeacherDisabled"
+        case .MiniLogo: "MiniLogo"
         }
     }
 }

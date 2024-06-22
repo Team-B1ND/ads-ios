@@ -65,3 +65,19 @@ public struct AlimoTabButton: View {
         }
     }
 }
+
+#Preview {
+    VStack {
+        AlimoTabButton("전체", isSelected: true) {}
+        AlimoTabButton("전체", isSelected: false) {}
+    }
+    .preview()
+}
+
+#Preview("AlimoTabButtonDark") {
+    VStack {
+        AlimoTabButton("전체", isSelected: true) {}
+        AlimoTabButton("전체", isSelected: false) {}
+    }
+    .preview(isDarkTheme: true)
+}

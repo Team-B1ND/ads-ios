@@ -15,7 +15,8 @@ extension AlimoColor.Label: SementicColor {
         switch self {
         case .normal: P.Neutral90
         case .sub: P.Neutral70
-        case .alt: P.Neutral50
+        case .em: P.Neutral50
+        case .alt: P.Neutral40
         case .back: P.Neutral30
         case .inverse: P.Neutral10
         case .disabled: P.Neutral40
@@ -26,6 +27,7 @@ extension AlimoColor.Label: SementicColor {
         switch self {
         case .normal: P.Neutral10
         case .sub: P.Neutral30
+        case .em: P.Neutral60
         case .alt: P.Neutral60
         case .back: P.Neutral70
         case .inverse: P.Neutral90

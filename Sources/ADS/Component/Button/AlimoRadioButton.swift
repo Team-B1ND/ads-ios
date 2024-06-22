@@ -49,3 +49,20 @@ public struct AlimoRadioButton: View {
         .applyAnimation()
     }
 }
+
+#Preview {
+    VStack {
+        AlimoRadioButton("Server", isSelected: true) {}
+        AlimoRadioButton("Server", isSelected: false) {}
+    }
+    .preview()
+}
+
+#Preview("AlimoRadioButtonDark") {
+    VStack {
+        AlimoRadioButton("Server", isSelected: true) {}
+        AlimoRadioButton("Server", isSelected: false) {}
+    }
+    .preview(isDarkTheme: true)
+}
+

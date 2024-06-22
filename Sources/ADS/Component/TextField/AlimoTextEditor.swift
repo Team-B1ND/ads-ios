@@ -57,3 +57,21 @@ public struct AlimoTextEditor: View {
             .padding(.vertical, 0.5)
     }
 }
+
+#Preview {
+    VStack {
+        AlimoTextEditor(text: .constant(""))
+        AlimoTextEditor(text: .constant(""), isEnabled: false)
+    }
+    .frame(height: 300)
+    .preview()
+}
+
+#Preview("AlimoTextEditorDark") {
+    VStack {
+        AlimoTextEditor(text: .constant(""))
+        AlimoTextEditor(text: .constant(""), isEnabled: false)
+    }
+    .frame(height: 300)
+    .preview(isDarkTheme: true)
+}

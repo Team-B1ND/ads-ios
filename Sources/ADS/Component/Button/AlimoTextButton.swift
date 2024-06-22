@@ -100,3 +100,19 @@ struct AlimoTextButtonStyle: ButtonStyle {
             }
     }
 }
+
+#Preview {
+    VStack {
+        AlimoTextButton("시작하기", type: .Medium) {}
+        AlimoTextButton("시작하기", type: .Small) {}
+    }
+    .preview()
+}
+
+#Preview("AlimoTextButtonDark") {
+    VStack {
+        AlimoTextButton("시작하기", type: .Medium) {}
+        AlimoTextButton("시작하기", type: .Small) {}
+    }
+    .preview(isDarkTheme: true)
+}

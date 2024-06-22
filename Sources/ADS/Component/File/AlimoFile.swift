@@ -20,7 +20,7 @@ public struct AlimoFile: View {
         if case .file = type {
             AlimoColor.Color.primary60
         } else {
-            AlimoColor.Label.alt
+            AlimoColor.Label.em
         }
     }
     private var description: String {
@@ -73,8 +73,17 @@ public struct AlimoFile: View {
             
         }
     }
-    .padding(20)
-    .alimoBackground(AlimoColor.Background.alt)
-    .registerPretendard()
-    .environmentObject(ColorProvider(isDarkTheme: true))
+    .preview(background: AlimoColor.Background.alt)
+}
+
+#Preview("AlimoFileDark") {
+    VStack {
+        AlimoFile("B1nd인턴+여행계획서.jpg", type: .file(count: 3)) {
+            
+        }
+        AlimoFile("B1nd인턴+여행계획서.jpg", type: .image(byte: 100)) {
+            
+        }
+    }
+    .preview(isDarkTheme: true, background: AlimoColor.Background.alt)
 }

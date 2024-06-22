@@ -22,7 +22,7 @@ public struct AlimoLikeButton: View {
     
     public var body: some View {
         
-        let labelColor: SementicColor = isLiked ? AlimoColor.Warning.normal : AlimoColor.Label.alt
+        let labelColor: SementicColor = isLiked ? AlimoColor.Warning.normal : AlimoColor.Label.em
         let background: SementicColor = isLiked ? AlimoColor.Warning.back : AlimoColor.Label.back
         
         Button {
@@ -45,4 +45,29 @@ public struct AlimoLikeButton: View {
             .cornerRadius(4, corners: .allCorners)
         }
     }
+}
+
+#Preview {
+    VStack {
+        AlimoLikeButton(like: 100, isLiked: true) {
+            
+        }
+        AlimoLikeButton(like: 100, isLiked: false) {
+            
+        }
+    }
+    .preview()
+}
+
+
+#Preview("AlimoLikeButtonDark") {
+    VStack {
+        AlimoLikeButton(like: 100, isLiked: true) {
+            
+        }
+        AlimoLikeButton(like: 100, isLiked: false) {
+            
+        }
+    }
+    .preview(isDarkTheme: true)
 }

@@ -60,8 +60,8 @@ public struct AlimoAvatar: View {
             .overlay {
                 Image(icon: .Person)
                     .resizable()
-                    .alimoIconColor(AlimoColor.Background.normal)
-                    .frame(width: type.size / 2, height: type.size / 2)
+                    .alimoIconColor(AlimoColor.Label.alt)
+                    .frame(width: type.size * 5 / 8, height: type.size * 5 / 8)
             }
     }
 }

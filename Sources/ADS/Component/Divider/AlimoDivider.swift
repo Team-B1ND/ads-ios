@@ -38,5 +38,13 @@ public struct AlimoDivider: View {
         AlimoDivider()
         AlimoDivider(type: .thick)
     }
-    .environmentObject(ColorProvider(isDarkTheme: false))
+    .preview()
+}
+
+#Preview("AlimoDividerDark") {
+    VStack {
+        AlimoDivider()
+        AlimoDivider(type: .thick)
+    }
+    .preview(isDarkTheme: true)
 }

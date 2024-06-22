@@ -4,7 +4,7 @@ public struct AlimoTextField: View {
     
     // MARK: - State
     @EnvironmentObject private var colorProvider: ColorProvider
-    @Binding var text: String
+    @Binding private var text: String
     @State private var isHide = true
     
     // MARK: - parameters

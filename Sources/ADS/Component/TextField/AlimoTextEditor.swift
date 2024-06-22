@@ -4,7 +4,7 @@ public struct AlimoTextEditor: View {
     
     // MARK: - State
     @EnvironmentObject private var colorProvider: ColorProvider
-    @Binding var text: String
+    @Binding private var text: String
     @FocusState private var isFocused: Bool
     
     // MARK: - parameters

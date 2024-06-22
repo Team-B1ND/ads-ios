@@ -2,7 +2,7 @@ import SwiftUI
 
 public struct AlimoToggle: View {
     
-    @Binding var isOn: Bool
+    @Binding private var isOn: Bool
     
     public init(
         isOn: Binding<Bool>

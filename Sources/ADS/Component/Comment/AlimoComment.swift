@@ -61,16 +61,7 @@ public struct AlimoComment: View {
                     Text("답글")
                         .alimoColor(AlimoColor.Label.em)
                         .alimoFont(.captionM)
-                        .background(
-                            GeometryReader { geometry in
-                                VStack {
-                                    Spacer()
-                                    Rectangle()
-                                        .frame(width: geometry.size.width, height: 1)
-                                        .alimoColor(AlimoColor.Label.em)
-                                }
-                            }
-                        )
+                        .underline(color: AlimoColor.Label.em)
                         .button {
                             action()
                         }

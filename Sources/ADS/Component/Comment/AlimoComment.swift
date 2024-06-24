@@ -35,10 +35,15 @@ public struct AlimoComment: View {
     }
     
     public var body: some View {
-        HStack(alignment: .top, spacing: 13){
+        HStack(alignment: .top, spacing: 12) {
             AlimoAvatar(type: .large)
-            VStack(alignment: .leading, spacing: 3){
-                HStack(alignment:.bottom, spacing: 5){
+                .if(type == .subcomment) { view in
+                    view
+                        .padding(.leading, 44)
+                }
+            
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(spacing: 4) {
                     Text(name)
                         .alimoColor(AlimoColor.Label.normal)
                         .alimoFont(.labelM)
@@ -53,31 +58,34 @@ public struct AlimoComment: View {
                     .alimoFont(.labelM)
                 
                 if type == .comment {
-                    Button(action: {
-                        action()
-                    }, label: {
-                        Text("답글")
-                            .alimoColor(AlimoColor.Label.em)
-                            .alimoFont(.captionM)
-                            .background(
-                                GeometryReader { geometry in
-                                    VStack {
-                                        Spacer()
-                                        Rectangle()
-                                            .frame(width: geometry.size.width, height: 1)
-                                            .alimoColor(AlimoColor.Label.em)
-                                    }
+                    Text("답글")
+                        .alimoColor(AlimoColor.Label.em)
+                        .alimoFont(.captionM)
+                        .background(
+                            GeometryReader { geometry in
+                                VStack {
+                                    Spacer()
+                                    Rectangle()
+                                        .frame(width: geometry.size.width, height: 1)
+                                        .alimoColor(AlimoColor.Label.em)
                                 }
-                            )
-                    })
+                            }
+                        )
+                        .button {
+                            action()
+                        }
                 }
             }
+            Spacer()
         }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(.clear)
     }
 }
 
 #Preview {
-    VStack(spacing: 20){
+    VStack(spacing: 0) {
         AlimoComment("알리모", type: .comment, date: "2025년 3월 1일", content: "내용") {}
         AlimoComment("알리모", type: .subcomment, date: "2025년 3월 1일", content: "내용") {}
     }

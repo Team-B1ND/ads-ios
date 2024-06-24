@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Nuke
 
 public struct AlimoNotification: View {
     
@@ -15,7 +16,7 @@ public struct AlimoNotification: View {
     @State private var isSelected: Bool
     private let profileUrl: String?
     private let imageUrl: String?
-    private let date : String
+    private let date: Date
     private let addEmojiAction: () -> Void
     private let bookmarkAction: () -> Void
     
@@ -26,7 +27,7 @@ public struct AlimoNotification: View {
         isSelected: Bool,
         profileUrl: String? = nil,
         imageUrl: String? = nil,
-        date: String,
+        date: Date,
         addEmojiAction: @escaping () -> Void,
         bookmarkAction: @escaping () -> Void
     ) {
@@ -43,15 +44,11 @@ public struct AlimoNotification: View {
     
     public var body: some View {
         
-        VStack{
-            HStack(alignment: .top, spacing: 10){
-                if let profileUrl = profileUrl {
-                    AlimoAvatar(profileUrl, type: .large)
-                } else {
-                    AlimoAvatar(type: .large)
-                }
-                
-                VStack(alignment: .leading, spacing: 5) {
+        HStack(alignment: .top, spacing: 12) {
+            AlimoAvatar(profileUrl, type: .large)
+            
+            VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 2) {
                     Text(title)
                         .alimoFont(.headline2B)
                         .alimoColor(AlimoColor.Label.normal)
@@ -59,12 +56,15 @@ public struct AlimoNotification: View {
                     Text(user)
                         .alimoFont(.labelM)
                         .alimoColor(AlimoColor.Label.sub)
-                    
+                }
+                
+                VStack(spacing: 8) {
                     Text(content)
                         .alimoFont(.bodyR)
                         .alimoColor(AlimoColor.Label.normal)
                     
                     if let imageUrl = imageUrl, let url = URL(string: imageUrl) {
+                        // TODO: apply Nuck
                         AsyncImage(url: url) { phase in
                             switch phase {
                             case .empty:
@@ -86,39 +86,39 @@ public struct AlimoNotification: View {
                         }
                     }
                     
-                    Text(date)
-                        .alimoFont(.captionM)
-                        .alimoColor(AlimoColor.Label.em)
-                    
-                    HStack{
-                        Button(action: {
-                            addEmojiAction()
-                        }, label: {
-                            Image(icon: .AddEmoji)
-                                .resizable()
-                                .alimoIconColor(AlimoColor.Label.alt)
-                                .frame(size: 20)
-                        })
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            bookmarkAction()
-                            isSelected.toggle()
-                        }, label: {
-                            Image(icon: .Bookmark)
-                                .resizable()
-                                .alimoIconColor(isSelected ?
-                                                AlimoColor.Color.primary60  : AlimoColor.Label.alt)
-                                .frame(size: 20)
-                        })
-                        
-                    }
+                    // TODO: add file view
                 }
-                Spacer()
+                
+                Text(date.description)
+                    .alimoFont(.captionM)
+                    .alimoColor(AlimoColor.Label.em)
+                
+                HStack {
+                    Image(icon: .AddEmoji)
+                        .resizable()
+                        .alimoIconColor(AlimoColor.Label.alt)
+                        .frame(size: 28)
+                        .button {
+                            addEmojiAction()
+                        }
+                    
+                    Spacer()
+                    Image(icon: .Bookmark)
+                        .resizable()
+                        .alimoIconColor(isSelected ?
+                                        AlimoColor.Color.primary60  : AlimoColor.Label.alt)
+                        .frame(size: 28)
+                        .button {
+                            
+                                bookmarkAction()
+                                isSelected.toggle()
+                        }
+                    
+                }
             }
+            Spacer()
         }
-        .padding(.horizontal,10)
+        .padding(.horizontal, 12)
     }
 }
 
@@ -128,7 +128,7 @@ public struct AlimoNotification: View {
         user: "user",
         content: "content",
         isSelected: false,
-        date: "2023년 1월 33일 오후 25:3",
+        date: .now,
         addEmojiAction: {
             
         },

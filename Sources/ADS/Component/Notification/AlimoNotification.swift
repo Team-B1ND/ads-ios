@@ -13,7 +13,7 @@ public struct AlimoNotification: View {
     private let title: String
     private let user: String
     private let content: String
-    @State private var isSelected: Bool
+    @Binding private var isSelected: Bool
     private let profileUrl: String?
     private let imageUrl: String?
     private let date: Date
@@ -24,7 +24,7 @@ public struct AlimoNotification: View {
         _ title: String,
         user: String,
         content: String,
-        isSelected: Bool,
+        isSelected: Binding<Bool>,
         profileUrl: String? = nil,
         imageUrl: String? = nil,
         date: Date,
@@ -34,7 +34,7 @@ public struct AlimoNotification: View {
         self.title = title
         self.user = user
         self.content = content
-        self.isSelected = isSelected
+        self._isSelected = isSelected
         self.profileUrl = profileUrl
         self.imageUrl = imageUrl
         self.date = date
@@ -109,9 +109,8 @@ public struct AlimoNotification: View {
                                         AlimoColor.Color.primary60  : AlimoColor.Label.alt)
                         .frame(size: 28)
                         .button {
-                            
-                                bookmarkAction()
-                                isSelected.toggle()
+                            bookmarkAction()
+                            isSelected.toggle()
                         }
                     
                 }
@@ -127,7 +126,7 @@ public struct AlimoNotification: View {
         "title",
         user: "user",
         content: "content",
-        isSelected: false,
+        isSelected: .constant(false),
         date: .now,
         addEmojiAction: {
             

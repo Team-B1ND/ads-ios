@@ -2,7 +2,7 @@ import SwiftUI
 
 public struct AlimoFile: View {
     
-    private let title: String
+    public let title: String
     private let type: FileType
     private let action: () -> Void
     

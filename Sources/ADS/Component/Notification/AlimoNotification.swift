@@ -9,7 +9,6 @@ import SwiftUI
 import Nuke
 
 public struct AlimoNotification: View {
-    
     private let title: String
     private let user: String
     private let content: String
@@ -19,6 +18,7 @@ public struct AlimoNotification: View {
     private let date: Date
     private let addEmojiAction: () -> Void
     private let bookmarkAction: () -> Void
+    private let files: [AlimoFile]
     
     public init(
         _ title: String,
@@ -29,8 +29,8 @@ public struct AlimoNotification: View {
         imageUrl: String? = nil,
         date: Date,
         addEmojiAction: @escaping () -> Void,
-        bookmarkAction: @escaping () -> Void
-    ) {
+        bookmarkAction: @escaping () -> Void,
+        files: [AlimoFile] = []) {
         self.title = title
         self.user = user
         self.content = content
@@ -40,6 +40,7 @@ public struct AlimoNotification: View {
         self.date = date
         self.addEmojiAction = addEmojiAction
         self.bookmarkAction = bookmarkAction
+        self.files = files
     }
     
     public var body: some View {
@@ -58,7 +59,7 @@ public struct AlimoNotification: View {
                         .alimoColor(AlimoColor.Label.sub)
                 }
                 
-                VStack(spacing: 8) {
+                VStack(alignment: .leading ,spacing: 8) {
                     Text(content)
                         .alimoFont(.bodyR)
                         .alimoColor(AlimoColor.Label.normal)
@@ -86,7 +87,9 @@ public struct AlimoNotification: View {
                         }
                     }
                     
-                    // TODO: add file view
+                    ForEach(files, id: \.title) { file in
+                        file
+                    }
                 }
                 
                 Text(date.description)
@@ -98,21 +101,18 @@ public struct AlimoNotification: View {
                         .resizable()
                         .alimoIconColor(AlimoColor.Label.alt)
                         .frame(size: 28)
-                        .button {
-                            addEmojiAction()
-                        }
+                        .button { addEmojiAction() }
                     
                     Spacer()
+                    
                     Image(icon: .Bookmark)
                         .resizable()
-                        .alimoIconColor(isSelected ?
-                                        AlimoColor.Color.primary60  : AlimoColor.Label.alt)
+                        .alimoIconColor(isSelected ? AlimoColor.Color.primary60 : AlimoColor.Label.alt)
                         .frame(size: 28)
                         .button {
                             bookmarkAction()
                             isSelected.toggle()
                         }
-                    
                 }
             }
             Spacer()
@@ -126,14 +126,14 @@ public struct AlimoNotification: View {
         "title",
         user: "user",
         content: "content",
-        isSelected: .constant(false),
+        isSelected: .constant(true),
         date: .now,
-        addEmojiAction: {
-            
-        },
-        bookmarkAction: {
-            
-        }
+        addEmojiAction: {},
+        bookmarkAction: {},
+        files: [
+            AlimoFile("B1nd인턴+여행계획서.jpg", type: .file(count: 3)) {},
+            AlimoFile("B1nd인턴+여행계획서.jpg", type: .image(byte: 100)) {}
+        ]
     )
     .preview()
 }

@@ -18,8 +18,7 @@ public struct AlimoNotification: View {
     private let date: Date
     private let addEmojiAction: () -> Void
     private let bookmarkAction: () -> Void
-    private let files: [AlimoFile]
-    
+    private let files: [FileInfo]
     public init(
         _ title: String,
         user: String,
@@ -30,18 +29,18 @@ public struct AlimoNotification: View {
         date: Date,
         addEmojiAction: @escaping () -> Void,
         bookmarkAction: @escaping () -> Void,
-        files: [AlimoFile] = []) {
-        self.title = title
-        self.user = user
-        self.content = content
-        self._isSelected = isSelected
-        self.profileUrl = profileUrl
-        self.imageUrl = imageUrl
-        self.date = date
-        self.addEmojiAction = addEmojiAction
-        self.bookmarkAction = bookmarkAction
-        self.files = files
-    }
+        files: [FileInfo] = []) {
+            self.title = title
+            self.user = user
+            self.content = content
+            self._isSelected = isSelected
+            self.profileUrl = profileUrl
+            self.imageUrl = imageUrl
+            self.date = date
+            self.addEmojiAction = addEmojiAction
+            self.bookmarkAction = bookmarkAction
+            self.files = files
+        }
     
     public var body: some View {
         
@@ -87,8 +86,8 @@ public struct AlimoNotification: View {
                         }
                     }
                     
-                    ForEach(files, id: \.title) { file in
-                        file
+                    ForEach(files, id: \.title) { fileInfo in
+                        AlimoFile(fileInfo: fileInfo)
                     }
                 }
                 
@@ -126,13 +125,13 @@ public struct AlimoNotification: View {
         "title",
         user: "user",
         content: "content",
-        isSelected: .constant(true),
+        isSelected: .constant(false),
         date: .now,
         addEmojiAction: {},
         bookmarkAction: {},
         files: [
-            AlimoFile("B1nd인턴+여행계획서.jpg", type: .file(count: 3)) {},
-            AlimoFile("B1nd인턴+여행계획서.jpg", type: .image(byte: 100)) {}
+            FileInfo(title: "B1nd인턴+여행계획서.jpg", type: .file(count: 3)) {},
+            FileInfo(title: "B1nd인턴+여행계획서.jpg", type: .image(byte: 100)) {}
         ]
     )
     .preview()

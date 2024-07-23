@@ -2,29 +2,22 @@ import SwiftUI
 
 public struct AlimoFile: View {
     
-    private let title: String
-    private let type: FileType
-    private let action: () -> Void
+    public let fileInfo: FileInfo
     
-    public init(
-        _ title: String,
-        type: FileType,
-        action: @escaping () -> Void
-    ) {
-        self.title = title
-        self.type = type
-        self.action = action
+    public init(fileInfo: FileInfo) {
+        self.fileInfo = fileInfo
     }
     
     private var descriptionColor: SementicColor {
-        if case .file = type {
+        if case .file = fileInfo.type {
             AlimoColor.Color.primary60
         } else {
             AlimoColor.Label.em
         }
     }
+    
     private var description: String {
-        switch type {
+        switch fileInfo.type {
         case .image(let byte):
             "\(byte) byte"
         case .file(let count):
@@ -34,7 +27,7 @@ public struct AlimoFile: View {
     
     public var body: some View {
         HStack {
-            Image(icon: type.icon)
+            Image(icon: fileInfo.type.icon)
                 .resizable()
                 .alimoIconColor(AlimoColor.Color.neutral00)
                 .frame(size: 24)
@@ -42,7 +35,7 @@ public struct AlimoFile: View {
                 .alimoBackground(AlimoColor.Color.primary60)
                 .cornerRadius(14, corners: .allCorners)
             VStack(alignment: .leading, spacing: 2) {
-                Text(title)
+                Text(fileInfo.title)
                     .alimoFont(.labelM)
                     .alimoColor(AlimoColor.Label.normal)
                 Text(description)
@@ -55,7 +48,7 @@ public struct AlimoFile: View {
                 .alimoIconColor(AlimoColor.Label.alt)
                 .frame(size: 24)
                 .button {
-                    action()
+                    fileInfo.action()
                 }
         }
         .padding(12)
@@ -66,24 +59,16 @@ public struct AlimoFile: View {
 
 #Preview {
     VStack {
-        AlimoFile("B1nd인턴+여행계획서.jpg", type: .file(count: 3)) {
-            
-        }
-        AlimoFile("B1nd인턴+여행계획서.jpg", type: .image(byte: 100)) {
-            
-        }
+        AlimoFile(fileInfo: FileInfo(title: "B1nd인턴+여행계획서.jpg", type: .file(count: 3)) {})
+        AlimoFile(fileInfo: FileInfo(title: "B1nd인턴+여행계획서.jpg", type: .image(byte: 100)) {})
     }
     .preview(background: AlimoColor.Background.alt)
 }
 
 #Preview("AlimoFileDark") {
     VStack {
-        AlimoFile("B1nd인턴+여행계획서.jpg", type: .file(count: 3)) {
-            
-        }
-        AlimoFile("B1nd인턴+여행계획서.jpg", type: .image(byte: 100)) {
-            
-        }
+        AlimoFile(fileInfo: FileInfo(title: "B1nd인턴+여행계획서.jpg", type: .file(count: 3)) {})
+        AlimoFile(fileInfo: FileInfo(title: "B1nd인턴+여행계획서.jpg", type: .image(byte: 100)) {})
     }
     .preview(isDarkTheme: true, background: AlimoColor.Background.alt)
 }

@@ -1,14 +1,7 @@
-//
-//  File.swift
-//
-//
-//  Created by dgsw8th61 on 6/23/24.
-//
-
 import SwiftUI
 import Nuke
 
-public struct AlimoNotification: View {
+public struct AlimoNotification<Destination: View>: View {
     private let title: String
     private let user: String
     private let content: String
@@ -19,6 +12,8 @@ public struct AlimoNotification: View {
     private let addEmojiAction: () -> Void
     private let bookmarkAction: () -> Void
     private let files: [FileInfo]
+    private let fileDestination: () -> Destination
+
     public init(
         _ title: String,
         user: String,
@@ -29,21 +24,23 @@ public struct AlimoNotification: View {
         date: Date,
         addEmojiAction: @escaping () -> Void,
         bookmarkAction: @escaping () -> Void,
-        files: [FileInfo] = []) {
-            self.title = title
-            self.user = user
-            self.content = content
-            self.isSelected = isSelected
-            self.profileUrl = profileUrl
-            self.imageUrl = imageUrl
-            self.date = date
-            self.addEmojiAction = addEmojiAction
-            self.bookmarkAction = bookmarkAction
-            self.files = files
-        }
-    
+        files: [FileInfo] = [],
+        fileDestination: @escaping () -> Destination
+    ) {
+        self.title = title
+        self.user = user
+        self.content = content
+        self.isSelected = isSelected
+        self.profileUrl = profileUrl
+        self.imageUrl = imageUrl
+        self.date = date
+        self.addEmojiAction = addEmojiAction
+        self.bookmarkAction = bookmarkAction
+        self.files = files
+        self.fileDestination = fileDestination
+    }
+
     public var body: some View {
-        
         HStack(alignment: .top, spacing: 12) {
             AlimoAvatar(profileUrl, type: .large)
             
@@ -58,13 +55,12 @@ public struct AlimoNotification: View {
                         .alimoColor(AlimoColor.Label.sub)
                 }
                 
-                VStack(alignment: .leading ,spacing: 8) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text(content)
                         .alimoFont(.bodyR)
                         .alimoColor(AlimoColor.Label.normal)
                     
                     if let imageUrl = imageUrl, let url = URL(string: imageUrl) {
-                        // TODO: apply Nuck
                         AsyncImage(url: url) { phase in
                             switch phase {
                             case .empty:
@@ -87,7 +83,9 @@ public struct AlimoNotification: View {
                     }
                     
                     ForEach(files, id: \.title) { fileInfo in
-                        AlimoFile(fileInfo: fileInfo)
+                        NavigationLink(destination: fileDestination()) {
+                            AlimoFile(fileInfo: fileInfo)
+                        }
                     }
                 }
                 
@@ -124,14 +122,18 @@ public struct AlimoNotification: View {
         "title",
         user: "user",
         content: "content",
-        isSelected: true ,
+        isSelected: true,
         date: .now,
         addEmojiAction: {},
         bookmarkAction: {},
         files: [
             FileInfo(title: "B1nd인턴+여행계획서.jpg", type: .file(count: 3)) {},
             FileInfo(title: "B1nd인턴+여행계획서.jpg", type: .image(byte: 100)) {}
-        ]
+        ],
+        fileDestination: {
+            EmptyView()
+        }
     )
     .preview()
 }
+

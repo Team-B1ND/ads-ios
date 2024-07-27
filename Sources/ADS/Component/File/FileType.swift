@@ -14,4 +14,10 @@ public struct FileInfo {
     public let title: String
     public let type: FileType
     public let action: () -> Void
+    
+    public init(title: String, type: FileType, action: @escaping () -> Void) {
+        self.title = title
+        self.type = type
+        self.action = action
+    }
 }

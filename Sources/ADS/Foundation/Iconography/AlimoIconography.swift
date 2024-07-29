@@ -51,6 +51,12 @@ public enum AlimoIconography {
     case Setting
     case Show
     case Write
+    case XMark
+    case Sad
+    case Ok
+    case Heart
+    case Funny
+    case Angry
     
     var icon: String {
         switch self {
@@ -103,6 +109,12 @@ public enum AlimoIconography {
         case .Setting: "Setting"
         case .Show: "Show"
         case .Write: "Write"
+        case .XMark: "XMark"
+        case .Sad: "Sad"
+        case .Ok: "Ok"
+        case .Heart: "Heart"
+        case .Funny: "Funny"
+        case .Angry: "Angry"
         }
     }
 }

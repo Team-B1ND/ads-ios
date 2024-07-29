@@ -9,11 +9,13 @@ public struct AlimoNotification<Destination: View>: View {
     private let profileUrl: String?
     private let imageUrl: String?
     private let date: Date
-    private let addEmojiAction: () -> Void
+    private let addEmojiAction: (EmojiType) -> Void
     private let bookmarkAction: () -> Void
     private let files: [FileInfo]
     private let fileDestination: () -> Destination
-
+    private var hasEmoji = true
+    @State private var emoji: EmojiType?
+    
     public init(
         _ title: String,
         user: String,
@@ -22,10 +24,12 @@ public struct AlimoNotification<Destination: View>: View {
         profileUrl: String? = nil,
         imageUrl: String? = nil,
         date: Date,
-        addEmojiAction: @escaping () -> Void,
+        addEmojiAction: @escaping (EmojiType) -> Void,
         bookmarkAction: @escaping () -> Void,
         files: [FileInfo] = [],
-        fileDestination: @escaping () -> Destination
+        fileDestination: @escaping () -> Destination,
+        hasEmoji: Bool,
+        emoji: EmojiType? = nil
     ) {
         self.title = title
         self.user = user
@@ -38,8 +42,10 @@ public struct AlimoNotification<Destination: View>: View {
         self.bookmarkAction = bookmarkAction
         self.files = files
         self.fileDestination = fileDestination
+        self.hasEmoji = hasEmoji
+        self._emoji = State(initialValue: emoji)
     }
-
+    
     public var body: some View {
         HStack(alignment: .top, spacing: 12) {
             AlimoAvatar(profileUrl, type: .large)
@@ -94,11 +100,28 @@ public struct AlimoNotification<Destination: View>: View {
                     .alimoColor(AlimoColor.Label.em)
                 
                 HStack {
-                    Image(icon: .AddEmoji)
-                        .resizable()
-                        .alimoIconColor(AlimoColor.Label.alt)
-                        .frame(size: 28)
-                        .button { addEmojiAction() }
+                    if hasEmoji {
+                        AlimoEmojiMenu {
+                            addEmojiAction($0)
+                            emoji = $0
+                        } content: {
+                            if let emoji = emoji {
+                                emoji.image
+                                    .resizable()
+                                    .frame(width: 28, height: 28)
+                            } else {
+                                Image(icon: .AddEmoji)
+                                    .resizable()
+                                    .frame(width: 28, height: 28)
+                            }
+                        }
+                    } else {
+                        Image(icon: .AddEmoji)
+                            .resizable()
+                            .alimoIconColor(AlimoColor.Label.alt)
+                            .frame(size: 28)
+                            .button { addEmojiAction(EmojiType.angry) }
+                    }
                     
                     Spacer()
                     
@@ -117,6 +140,7 @@ public struct AlimoNotification<Destination: View>: View {
     }
 }
 
+
 #Preview {
     AlimoNotification(
         "title",
@@ -124,7 +148,9 @@ public struct AlimoNotification<Destination: View>: View {
         content: "content",
         isSelected: true,
         date: .now,
-        addEmojiAction: {},
+        addEmojiAction: { emoji in
+            print("\(emoji)")
+        },
         bookmarkAction: {},
         files: [
             FileInfo(title: "B1nd인턴+여행계획서.jpg", type: .file(count: 3)) {},
@@ -132,8 +158,9 @@ public struct AlimoNotification<Destination: View>: View {
         ],
         fileDestination: {
             EmptyView()
-        }
+        },
+        hasEmoji: true,
+        emoji: nil
     )
     .preview()
 }
-

@@ -15,17 +15,17 @@ public enum EmojiType: String, CaseIterable {
     case sad = "SAD"
     case angry = "ANGRY"
 
-    static func fromString(_ str: String?) -> EmojiType? {
+    public static func fromString(_ str: String?) -> EmojiType? {
         return str.flatMap { EmojiType(rawValue: $0) }
     }
 
-    var image: Image {
+    public var image: Image {
         switch self {
-        case .okay: return Image(.ok)
-        case .love: return Image(.heart)
-        case .laugh: return Image(.funny)
-        case .sad: return Image(.sad)
-        case .angry: return Image(.angry)
+        case .okay: return Image(icon: .Ok)
+        case .love: return Image(icon: .Heart)
+        case .laugh: return Image(icon: .Funny)
+        case .sad: return Image(icon: .Sad)
+        case .angry: return Image(icon: .Angry)
         }
     }
 }

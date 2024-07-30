@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AlimoBookMark : View {
+public struct AlimoBookMark : View {
     private var isSelected: Bool
     private let bookmarkAction: () -> Void
     private let title: String
@@ -31,7 +31,7 @@ struct AlimoBookMark : View {
         self.category = category
     }
     
-    var body: some View {
+    public var body: some View {
         VStack{
             RoundedRectangle(cornerRadius: 8)
                 .alimoColor(AlimoColor.Background.sub)

@@ -1,6 +1,6 @@
 import SwiftUI
 
-public class AlimoPallete {
+public struct AlimoPallete {
     private init() {}
     public static let shared = AlimoPallete()
     

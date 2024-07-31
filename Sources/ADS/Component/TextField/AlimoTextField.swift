@@ -148,7 +148,7 @@ struct AlimoTextFieldStyle: TextFieldStyle {
 #Preview {
     VStack {
         AlimoTextField("이메일을 입력해주세요", text: .constant("123"))
-        AlimoTextField("이메일을 입력해주세요", text: .constant(""), isEnabled: false)
+        AlimoTextField("이메일을 입력해주세요", text: .constant(""), isEnabled: false, isRounded: false)
     }
     .preview()
 }
@@ -156,7 +156,7 @@ struct AlimoTextFieldStyle: TextFieldStyle {
 #Preview("AlimoTextFieldDark") {
     VStack {
         AlimoTextField("이메일을 입력해주세요", text: .constant("123"))
-        AlimoTextField("이메일을 입력해주세요", text: .constant(""), isEnabled: false)
+        AlimoTextField("이메일을 입력해주세요", text: .constant(""), isEnabled: false, isRounded: true)
     }
     .preview(isDarkTheme: true)
 }

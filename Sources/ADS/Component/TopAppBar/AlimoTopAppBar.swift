@@ -51,13 +51,13 @@ public struct AlimoTopAppBar<C>: View where C: View {
                     trailingContent
                 }
                 .frame(height: 54)
-                .alimoBackground(background)
                 .padding(.horizontal, 4)
+                .alimoBackground(background)
                 content()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             }
-            .toTop()
-            .navigationBarBackButtonHidden()
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
@@ -82,10 +82,16 @@ public extension View {
 
 @available(macOS 13.0, *)
 #Preview {
-    Text("Hello Alimo")
-        .alimoColor(AlimoColor.Label.normal)
-        .alimoTopAppBar("프로필")
-        .preview(background: AlimoColor.Background.alt)
+    VStack {
+        Text("Hello Alimo")
+//        Spacer()
+        Button("WOW") {
+            
+        }
+    }
+    .alimoBackground(AlimoColor.Label.normal)
+    .alimoTopAppBar("프로필", background: AlimoColor.Warning.normal)
+    .preview(background: AlimoColor.Background.alt)
 }
 
 @available(macOS 13.0, *)

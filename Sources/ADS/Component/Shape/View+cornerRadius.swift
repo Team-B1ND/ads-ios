@@ -18,6 +18,6 @@ public extension View {
 #Preview {
     RoundedCornerShape(radius: 10)
         .frame(size: 200)
-//        .stroke(12, content: Color.blue)
-//        .frame(size: 26)
+        .stroke(12, content: Color.blue)
+        .frame(size: 26)
 }

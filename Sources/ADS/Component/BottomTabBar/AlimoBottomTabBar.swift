@@ -10,7 +10,7 @@ public struct AlimoBottomTabBar<C>: View where C: View {
     public init(
         selectedTab: BottomTabType,
         onTap: @escaping (BottomTabType) -> Void,
-        content: @escaping () -> C
+        @ViewBuilder content: @escaping () -> C
     ) {
         self.selectedTab = selectedTab
         self.onTap = onTap

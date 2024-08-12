@@ -90,7 +90,7 @@ struct AlimoTextFieldStyle: TextFieldStyle {
     }
     
     private var textColor: SementicColor {
-        isEnabled ? (!text.isEmpty ? AlimoColor.Label.normal : AlimoColor.Label.alt) : AlimoColor.Label.back
+        isEnabled ? AlimoColor.Label.normal : AlimoColor.Label.back
     }
     
     private var iconColor: SementicColor {
@@ -145,18 +145,23 @@ struct AlimoTextFieldStyle: TextFieldStyle {
     }
 }
 
-#Preview {
-    VStack {
-        AlimoTextField("이메일을 입력해주세요", text: .constant("123"))
-        AlimoTextField("이메일을 입력해주세요", text: .constant(""), isEnabled: false, isRounded: false)
+private struct TextFieldPreview: View {
+    @State private var email1 = ""
+    @State private var email2 = ""
+    var body: some View {
+        VStack {
+            AlimoTextField("이메일을 입력해주세요", text: $email1)
+            AlimoTextField("이메일을 입력해주세요", text: $email2, isEnabled: false, isRounded: false)
+        }
     }
-    .preview()
+}
+
+#Preview {
+    TextFieldPreview()
+        .preview()
 }
 
 #Preview("AlimoTextFieldDark") {
-    VStack {
-        AlimoTextField("이메일을 입력해주세요", text: .constant("123"))
-        AlimoTextField("이메일을 입력해주세요", text: .constant(""), isEnabled: false, isRounded: true)
-    }
-    .preview(isDarkTheme: true)
+    TextFieldPreview()
+        .preview(isDarkTheme: true)
 }
